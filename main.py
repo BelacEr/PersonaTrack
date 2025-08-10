@@ -17,6 +17,7 @@ edit_person(person) ➜  Let's the uses modify fields of an existing entry.
 delete_person(people, id) ➜ Removes a person from the list.
 
 """
+from persona_tracks_module import *
 
 data = [
   {
@@ -38,6 +39,7 @@ data = [
 
 import json
 
+"""
 def enter_numbers(message):
     while True:
         try:
@@ -73,7 +75,6 @@ def create_data(data):      # create database.json for the first time
     with open("database.json", "w") as f:
         json.dump(data, f, indent=4)
 
-
 def load_data():
     try:
         with open("database.json", "r") as file:
@@ -88,4 +89,21 @@ def save_data(data):
 if __name__ == '__main__':
     create_data(data)
     add_person()
+"""
+
+while True:
+    print("\nMenu: (1) Add (2) View (3) Edit (4) Delete (5) Exit")
+    choice = enter_numbers("Choose an option: ")
+
+    if choice == 1:
+        pass
+    elif choice == 2:
+        pass
+    elif choice == 3:
+        pass
+    elif choice == 4:
+        pass
+    elif choice == 5:
+        break
+
 
