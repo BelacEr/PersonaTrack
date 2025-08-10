@@ -99,7 +99,7 @@ while True:
     choice = enter_numbers("Choose an option: ")
 
     if choice == 1:
-        pass
+        add_person(data)
     elif choice == 2:
         pass
     elif choice == 3:
@@ -109,4 +109,6 @@ while True:
     elif choice == 5:
         print(f"\n{INFO}Thank you for using {SUCCESS}PersonTrack!")
         break
+    else:   # Less than 1, more than 5
+        print(f"{WARNING}Make sure you enter a valid number for the menu.")
 

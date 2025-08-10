@@ -35,17 +35,21 @@ def enter_numbers(message):
         try:
             return int(ask(message))
         except ValueError:
-            print("Enter only valid numbers")
+            print(f"{WARNING}Enter only valid numbers")
+        except KeyboardInterrupt:
+            print(f"\n{WARNING}Operation cancelled by user.")
+            return 5    # Exit
 
 def add_person(data):
     # Collect user input.
-    first_name = ask("First name: ").strip()
-    middle_name = ask("Midddle name: ").strip()
-    last_name = ask("Last name: ").strip()
+    first_name = ask("First name: ").strip().title()
+    middle_name = ask("Midddle name: ").strip().title()
+    last_name = ask("Last name: ").strip().title()
     age = enter_numbers("Age: ")
     languages = ask("Languages: ").split(',')    # NEED TO CHANGE
     country = ask("Country: ").strip()
     city = ask("City: ").strip()
+    direction = ask("Direction: ").strip()
     phone_number = ask("Phone number: ")    # NEED TO CHANGE
    
     # Email validation.
@@ -74,6 +78,7 @@ def add_person(data):
             "Languages": languages,     # NEED TO CHANGE
             "Country": country,    
             "City": city,
+            "Direction": direction,
             "Social media": social_media,   # NEED TO CHANGE
             "Phone number": phone_number,
             "Email": email,
@@ -81,7 +86,7 @@ def add_person(data):
 
     data.append(new_person) # Add to in-memory list.
     save_data(data)         # Persist to JSON
-    print("✅ Person added and saved.")
+    print(f"✅ {SUCCESS}Person added and saved.")
 
 
 def save_data(data):
