@@ -17,7 +17,10 @@ edit_person(person) ➜  Let's the uses modify fields of an existing entry.
 delete_person(people, id) ➜ Removes a person from the list.
 
 """
+from rich import print
+from text_styles import *
 from persona_tracks_module import *
+
 
 data = [
   {
@@ -104,6 +107,6 @@ while True:
     elif choice == 4:
         pass
     elif choice == 5:
+        print(f"\n{INFO}Thank you for using {SUCCESS}PersonTrack!")
         break
-
 

@@ -1,4 +1,4 @@
-"""
+u"""
 Functions to be created:
 enter_numbers() ➜ Make sure the data input is an integer
 
@@ -19,7 +19,9 @@ edit_person(person) ➜  Let's the uses modify fields of an existing entry.
 delete_person(people, id) ➜ Removes a person from the list.
 
 """
-FROM RICH 
+from rich import print
+from rich.prompt import Prompt
+from text_styles import *
 import json
 
 data = []
@@ -31,29 +33,36 @@ def get_next_id(data):
 def enter_numbers(message):
     while True:
         try:
-            return int(input(message))
+            return int(ask(message))
         except ValueError:
             print("Enter only valid numbers")
 
 def add_person(data):
     # Collect user input.
-    first_name = input("First name: ").strip()
-    middle_name = input("Midddle name: ").strip()
-    last_name = input("Last name: ").strip()
+    first_name = ask("First name: ").strip()
+    middle_name = ask("Midddle name: ").strip()
+    last_name = ask("Last name: ").strip()
     age = enter_numbers("Age: ")
-    languages = input("Languages: ").split(',')    # NEED TO CHANGE
-    country = input("Country: ").strip()
-    city = input("City: ").strip()
-    phone_number = input("Phone number: ")    # NEED TO CHANGE
-    email = input("Email: ").strip()
-    
+    languages = ask("Languages: ").split(',')    # NEED TO CHANGE
+    country = ask("Country: ").strip()
+    city = ask("City: ").strip()
+    phone_number = ask("Phone number: ")    # NEED TO CHANGE
+   
+    # Email validation.
+    while True:
+        email = ask("Email: ").strip()
+        if "@" in email and "." in email.split("@")[-1]:
+            break
+        print(f"{ERROR}Invalid email (must contain '@' and domain)")
+
+
     # Initialize social_media as dictionary
     social_media = {}
     while True:
-        platform = input("Social media (or leave blank to stop): ").strip()
+        platform = ask("Social media (or leave blank to stop): ").strip()
         if not platform:
             break
-        username = input(f"Username for {platform}: ").strip()
+        username = ask(f"Username for {platform}: ").strip()
         social_media[platform] = username
 
     new_person = {
@@ -73,6 +82,7 @@ def add_person(data):
     data.append(new_person) # Add to in-memory list.
     save_data(data)         # Persist to JSON
     print("✅ Person added and saved.")
+
 
 def save_data(data):
     if not isinstance(data, (list, dict)):  # Basic validation
